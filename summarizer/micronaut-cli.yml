@@ -1,0 +1,6 @@
+applicationType: cli
+defaultPackage: io.nono.ai
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [app-name, graalvm, http-client-test, java, junit, langchain4j-ollama, langchain4j-openai, logback, maven, maven-enforcer-plugin, picocli, picocli-java-application, picocli-junit, properties, readme, serialization-jackson, shade]
