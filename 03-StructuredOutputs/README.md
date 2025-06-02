@@ -3,10 +3,8 @@
 
 ## Introduction
 
-This structured output takes a prompt  a countries and find and 
-return a json structure representing the country matching the user input.
-
-
+Structured Outputs is a feature that ensures the model will always generate responses that adhere to your supplied JSON Schema. 
+This example takes a prompt about countries and returns a JSON structure representing the country that matches the user's input.
 
 
 
