@@ -1,24 +1,8 @@
-## Micronaut 4.9.2 Documentation
+# RAG
 
-- [User Guide](https://docs.micronaut.io/4.9.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.9.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.9.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+This project illustrates RAG in a two steps project.
 
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature slf4j-simple-logger documentation
+1. ingest document in an Oracle DB23ai vector Store
 
-- [https://github.com/GoodforGod/slf4j-simple-logger](https://github.com/GoodforGod/slf4j-simple-logger)
-
-
-## Feature maven-enforcer-plugin documentation
-
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
-
-
-## Feature serialization-jackson documentation
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
+2. Rely on this Vector store to populate LLM Context and give precise answers to users queries.
 
