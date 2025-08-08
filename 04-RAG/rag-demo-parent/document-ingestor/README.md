@@ -1,13 +1,9 @@
-## Micronaut 4.9.2 Documentation
-
-
+#  RAG Demo
 
 
 ## Index documents 
 
 1. Create a DB23ai instance 
-
-
 
 ```sh
 podman run --name oracle-db \
@@ -57,7 +53,7 @@ TRUNCATE  TABLE ORA_DOCS ;
 
 4. Build the application 
 ```sh
-cd rag-parent
+cd rag-demo-parent
 mvn clean install
 ```
 
@@ -68,7 +64,10 @@ mvn clean install
  ```
 
 
-6. Check Text segment similar to user queries.
+
+##  Perform similarity Searches
+
+1. Check Text segment similar to user queries.
 
 ```sh
 ❯ java -jar ./target/document-ingestor-0.1.jar --search --query="What is Java Universal subscription"
