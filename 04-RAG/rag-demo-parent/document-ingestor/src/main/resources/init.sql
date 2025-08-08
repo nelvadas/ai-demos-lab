@@ -1,0 +1,22 @@
+
+-- Create a new tablespace
+CREATE TABLESPACE vector_ts
+  DATAFILE '/opt/oracle/oradata/FREE/FREEPDB1/vector_ts01.dbf' SIZE 100M
+  AUTOEXTEND ON
+  SEGMENT SPACE MANAGEMENT AUTO;
+
+
+-- Check the tablespace filename of the user
+CREATE USER JAVA_AI_APPUSER IDENTIFIED BY Oracle01#
+DEFAULT TABLESPACE vector_ts
+TEMPORARY TABLESPACE TEMP
+QUOTA UNLIMITED ON vector_ts;
+
+
+GRANT CREATE SESSION TO JAVA_AI_APPUSER;
+GRANT CREATE TABLE TO  JAVA_AI_APPUSER;
+
+
+SELECT username, default_tablespace
+FROM dba_users
+WHERE username = 'JAVA_AI_APPUSER';

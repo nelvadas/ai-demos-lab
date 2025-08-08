@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.nono.ia</groupId>
+  <artifactId>rag-demo-parent</artifactId>
+  <version>0.1</version>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>io.micronaut.platform</groupId>
+    <artifactId>micronaut-parent</artifactId>
+    <version>4.9.2</version>
+  </parent>
+  <properties>
+    <jdk.version>21</jdk.version>
+    <release.version>21</release.version>
+    <micronaut.version>4.9.2</micronaut.version>
+     <pdfbox.version>3.0.3</pdfbox.version>
+    <ojdbc.version>23.9.0.25.07</ojdbc.version>
+    <langchain4j.version>1.2.0</langchain4j.version>
+    <langchain4j.oracle.version>1.2.0-beta8</langchain4j.oracle.version>
+    <langchain4j.open-ai.version>1.2.0</langchain4j.open-ai.version>
+    <langchain4j.embeddings-all-minilm-l6.version>1.2.0-beta8</langchain4j.embeddings-all-minilm-l6.version>
+    <langchain4j.vector-search.version>1.2.0-beta8</langchain4j.vector-search.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <modules>
+    <module>document-ingestor</module>
+    <module>retrieval-generation</module>
+  </modules>
+
+  <dependencyManagement>
+        <dependencies>
+
+            <!-- LangChain4j (no need to repeat version in children) -->
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-vector-search</artifactId>
+                <version>${langchain4j.vector-search.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-open-ai</artifactId>
+                <version>${langchain4j.open-ai.version}</version>
+            </dependency>
+
+
+
+          <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-oracle</artifactId>
+            <version>${langchain4j.oracle.version}</version>
+        </dependency>
+
+
+       <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-embeddings-all-minilm-l6-v2-q</artifactId>
+             <version>${langchain4j.embeddings-all-minilm-l6.version}</version>
+        </dependency>
+
+
+            <!-- Oracle JDBC -->
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ucp</artifactId>
+                <version>${ojdbc.version}</version>
+            </dependency>
+
+            <!-- PDFBox -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
