@@ -5,17 +5,70 @@
 
 ## Index documents 
 
-```sql
-TRUNCATE TABLE ORA_DOCS;
+1. Create a DB23ai instance 
+
+
+
+```sh
+podman run --name oracle-db \
+-p 1521:1521 \
+-e ORACLE_PWD=Oracle01# \
+-e ENABLE_ARCHIVELOG=true \
+-e ENABLE_FORCE_LOGGING=true \
+-v $(PWD)/oradata:/opt/oracle/oradata \
+-v $(PWD)/onnx:/opt/oracle/onnx \
+container-registry.oracle.com/database/free:latest
+```
+
+2. Initialize applicaiton user and table space .
+Connect to DB and perform some initializations 
+
+```sh
+podman exec -it oracle-db sqlplus pdbadmin/Oracle01#@FREEPDB1
 ```
 
 
+3. Run initialization script
+```sql
+-- Create a new tablespace 
+CREATE TABLESPACE vector_ts
+  DATAFILE '/opt/oracle/oradata/FREE/FREEPDB1/vector_ts01.dbf' SIZE 100M
+  AUTOEXTEND ON
+  SEGMENT SPACE MANAGEMENT AUTO;
+
+
+-- Check the tablespace filename of the user
+CREATE USER JAVA_AI_APPUSER IDENTIFIED BY Oracle01#
+DEFAULT TABLESPACE vector_ts
+TEMPORARY TABLESPACE TEMP
+QUOTA UNLIMITED ON vector_ts;
+
+
+GRANT CREATE SESSION TO JAVA_AI_APPUSER;
+GRANT CREATE TABLE TO  JAVA_AI_APPUSER;
+
+
+SELECT username, default_tablespace
+FROM dba_users
+WHERE username = 'JAVA_AI_APPUSER';
+
+TRUNCATE  TABLE ORA_DOCS ;
+```
+
+4. Build the application 
+```sh
+cd rag-parent
+mvn clean install
+```
+
+
+5. Inject a document in database.
 ```sh
  java -jar ./target/document-ingestor-0.1.jar --ingest  --path=./src/main/resources/javase-subscription-datasheet.pdf -v
  ```
 
 
-## Search Similarities 
+6. Check Text segment similar to user queries.
 
 ```sh
 ❯ java -jar ./target/document-ingestor-0.1.jar --search --query="What is Java Universal subscription"
@@ -52,10 +105,7 @@ Use Java SE Universal Subscription’s term-based licensing and support to maint
 flexibility around the transition point between versions while at the same time making sure 
 that your Java platform remains stable and up to date." metadata = {index=19} }, metadata = {EMBEDDING_ID=c35a5485-e78d-47c1-941f-76931d9d7228, SCORE=0.8830999561775812} }
  
-16:02:57.743 [main] DEBUG io.micronaut.context.DefaultBeanContext -- Stopping BeanContext
-16:02:57.743 [main] DEBUG io.micronaut.context.DefaultBeanContext -- Finding candidate beans for type: ApplicationEventPublisher<ShutdownEvent T>
-16:02:57.743 [main] DEBUG io.micronaut.context.DefaultBeanContext --   interface io.micronaut.context.event.ApplicationEventPublisher null io.micronaut.context.event.ApplicationEventPublisherFactory@65eb1656
-16:02:57.743 [main] DEBUG io.micronaut.context.DefaultBeanContext -- Found concrete candidate [io.micronaut.context.event.ApplicationEventPublisherFactory@65eb1656] for type: applicationEventPublisher
+
 ```
 
 
