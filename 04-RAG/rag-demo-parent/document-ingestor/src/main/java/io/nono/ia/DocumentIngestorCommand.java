@@ -77,7 +77,7 @@ public class DocumentIngestorCommand implements Runnable {
 
 
         } else { // search
-            logger.info(String.format("Searching for \"%s\" (limit %d results)%n", query, limit));
+            logger.info(String.format("Searching for \"%s\"%n", query));
             handleSearch(query);
         }
 

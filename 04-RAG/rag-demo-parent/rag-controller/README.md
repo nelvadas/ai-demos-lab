@@ -12,21 +12,52 @@ $ mvn clean install
 
 2. Test the query Endpoint 
 ```sh
-$curl http://localhost:8080/search/rag\?userQuery\=JavaSE
-JAvaSEDefaultContent { textSegment = TextSegment { text = "The Java SE
-Universal Subscription from Oracle provides access to tools for consistently managing
-updates, enabling enterprises to monitor their own Java runtimes, boosting the performance
-of applications, and includes access to a specialized Java SE support team. PROTECTING YOUR INVESTMENT IN JAVA SE
-Java is the most widely used professional development language and the #1 developer choice
-for the cloud." metadata = {index=2} }, metadata = {EMBEDDING_ID=11f56dfe-474d-4b4e-86fd-25dc1d2c5e00, SCORE=0.8316499866646907} }
-DefaultContent { textSegment = TextSegment { text = "2 DATA SHEET  |  Oracle Java SE Universal Subscription: Protect Your Investment in Java SE
- Copyright © 2024, Oracle and/or its affiliates
-are planned to be available until one year after JDK 25 LTS releases (scheduled for September
-2025). With a Java SE Universal Subscription, you will have access to tools, features, and
-updates that help you manage your cloud, server, and desktop deployments." metadata = {index=9} }, metadata = {EMBEDDING_ID=6663f2f9-6306-47fc-a9a2-f509b57b79df, SCORE=0.8270349072146105} }
+$curl http://localhost:8080/search/rag?userQuery=JavaSE%20Prices
+According to the provided text, the Java SE Universal Subscription model offers simple per-employee pricing starting at $15/employee/month and lower depending on volume.
+
+References:
+
+1. **EMBEDDING_ID**: bae5dfe1-932b-4511-8735-2ee2848f8a31
+**Index**: 24
+**SCORE**: 0.7896159252764934
 ```
 
 Check the output without the Vector DB 
 ```sh
-$curl http://localhost:8080/search/norag\?userQuery\=JavaSE
+$curl http://localhost:8080/search/norag?userQuery=JavaSE%20Prices
+The prices for Java SE (Standard Edition) vary depending on the vendor, licensing model, and level of support. Here's a general breakdown:
+
+**Oracle JDK**
+
+* Oracle offers three types of licenses:
+	+ Commercial license: This is the most common type, suitable for commercial use cases. The price depends on the number of processors and the level of support.
+	+ Personal license: This is free for personal use, but not for commercial purposes.
+	+ OpenJDK: This is a free, open-source implementation of Java SE, available under the GNU General Public License (GPL).
+
+**Other Vendors**
+
+* Azul Systems: Offers a commercial license for Zulu Enterprise, which includes support and additional features. Prices start at around $1,000 per year.
+* BellSoft: Provides a commercial license for GraalVM CE, which includes support and additional features. Prices start at around $500 per year.
+* Amazon Corretto: A free, open-source implementation of Java SE, available under the Apache License 2.0.
+
+**Pricing Tiers**
+
+* For Oracle JDK, the prices typically range from:
+	+ Small-scale use (up to 1 CPU): Free
+	+ Medium-scale use (1-4 CPUs): $20-$50 per year
+	+ Large-scale use (5-16 CPUs): $100-$500 per year
+	+ Enterprise-scale use (17+ CPUs): Custom pricing
+
+Please note that these prices are estimates and may vary depending on the vendor, your location, and the specific licensing agreement.
+
+References:
+
+1. Oracle: Java SE Licensing [1]
+2. Azul Systems: Zulu Enterprise Pricing [2]
+3. BellSoft: GraalVM CE Pricing [3]
+
+[1] https://www.oracle.com/java/technologies/javase-license.html
+[2] https://www.azul.com/zulu-enterprise-pricing/
+[3] https://bell-sw.com/products/graalvm-ce/pricing/
+
 ``` 

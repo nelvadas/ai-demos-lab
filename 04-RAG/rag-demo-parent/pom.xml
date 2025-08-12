@@ -23,6 +23,10 @@
     <langchain4j.open-ai.version>1.2.0</langchain4j.open-ai.version>
     <langchain4j.embeddings-all-minilm-l6.version>1.2.0-beta8</langchain4j.embeddings-all-minilm-l6.version>
     <langchain4j.vector-search.version>1.2.0-beta8</langchain4j.vector-search.version>
+    <langchain4j.core.version>1.2.0</langchain4j.core.version>
+    <langchain4j.ollama.version>1.2.0</langchain4j.ollama.version>
+    <langchain4j.community-oci-genai.version>1.2.0-beta8</langchain4j.community-oci-genai.version>
+
   </properties>
 
   <repositories>
@@ -34,7 +38,7 @@
 
   <modules>
     <module>document-ingestor</module>
-    <module>retrieval-generation</module>
+    <module>rag-controller</module>
   </modules>
 
   <dependencyManagement>
@@ -46,6 +50,13 @@
                 <artifactId>langchain4j</artifactId>
                 <version>${langchain4j.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-core</artifactId>
+                <version>${langchain4j.core.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>dev.langchain4j</groupId>
@@ -61,12 +72,26 @@
             </dependency>
 
 
+  <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-ollama</artifactId>
+       <version>${langchain4j.ollama.version}</version>
+    </dependency>
+
 
           <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-oracle</artifactId>
             <version>${langchain4j.oracle.version}</version>
         </dependency>
+
+
+  <!-- OCI Generative AI Models -->
+        <dependency>
+       <groupId>dev.langchain4j</groupId>
+       <artifactId>langchain4j-community-oci-genai</artifactId>
+       <version>${langchain4j.community-oci-genai.version}</version>
+      </dependency>
 
 
        <dependency>
