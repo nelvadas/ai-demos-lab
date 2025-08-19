@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Demo Chat</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
+        #chat-window { flex-grow: 1; overflow-y: auto; padding: 20px; border-bottom: 1px solid #ccc; }
+        .message { margin-bottom: 15px; }
+        .user-message { text-align: right; }
+        .user-message .text { background-color: #dcf8c6; display: inline-block; padding: 10px; border-radius: 10px; }
+        .bot-message .text { background-color: #f1f0f0; display: inline-block; padding: 10px; border-radius: 10px; }
+        #input-area { display: flex; padding: 10px; }
+        #user-input { flex-grow: 1; border: 1px solid #ccc; border-radius: 5px; padding: 10px; }
+        #send-button { margin-left: 10px; padding: 10px 20px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+        #rag-options { padding: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div id="chat-window"></div>
+    <div id="rag-options">
+        <input type="radio" id="rag" name="rag_mode" value="rag" checked>
+        <label for="rag">RAG</label>
+        <input type="radio" id="norag" name="rag_mode" value="norag">
+        <label for="norag">No RAG</label>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        const chatWindow = document.getElementById('chat-window');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender + '-message');
+            const textDiv = document.createElement('div');
+            textDiv.classList.add('text');
+            textDiv.textContent = text;
+            messageDiv.appendChild(textDiv);
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const query = userInput.value.trim();
+            if (!query) return;
+
+            addMessage(query, 'user');
+            userInput.value = '';
+
+            const ragMode = document.querySelector('input[name="rag_mode"]:checked').value;
+            
+            addMessage('...', 'bot');
+
+            try {
+                const response = await fetch(`http://localhost:8080/search/${ragMode}?userQuery=${encodeURIComponent(query)}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const text = await response.text();
+                const lastBotMessage = chatWindow.querySelector('.bot-message:last-child .text');
+                lastBotMessage.textContent = text;
+            } catch (error) {
+                const lastBotMessage = chatWindow.querySelector('.bot-message:last-child .text');
+                lastBotMessage.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

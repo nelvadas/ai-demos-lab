@@ -39,6 +39,7 @@
   <modules>
     <module>document-ingestor</module>
     <module>rag-controller</module>
+    <module>rag-ihm</module>
   </modules>
 
   <dependencyManagement>

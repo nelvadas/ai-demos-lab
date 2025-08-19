@@ -4,6 +4,10 @@
 This module expose a REST Endpoint to chat an LLM
 and custom ingested PDF data.
 
+## With Ollama 
+
+update application.properties
+ai.provider=ollama
 
 1. Build the application
 ```sh 
@@ -61,3 +65,55 @@ References:
 [3] https://bell-sw.com/products/graalvm-ce/pricing/
 
 ``` 
+
+
+## With OCI Generative AI Models 
+
+update application.properties
+
+ai.provider=oci
+
+1. norag 
+
+```sh 
+curl  http://localhost:8080/search/norag?userQuery=JavaSE%20Prices
+
+Java Standard Edition (JavaSE) is free to download and use for commercial and non-commercial purposes. However, if you are an enterprise user and require long-term support, extended support, or additional commercial features, you can purchase a JavaSE subscription from Oracle. The pricing for these subscriptions varies based on the specific needs and can be customized for your organization.
+
+For more detailed pricing information, you can visit the official Oracle website or contact their sales team for a personalized quote.
+
+References:
+1. https://www.oracle.com/java/technologies/javase/products-pricing.html
+```
+
+2. RAG enabled
+
+```sh 
+http://localhost:8080/search/rag?userQuery=JavaSE%20Prices
+The Java SE Universal Subscription offers a simple pricing model based on the number of employees. The starting price is $15 per employee per month, and this rate can decrease depending on the volume of employees.
+
+## References
+1. bae5dfe1-932b-4511-8735-2ee2848f8a31, 24, 0.7896159252764934
+
+```
+
+
+From database check the text associated to this embedding
+
+
+```sql
+SELECT METADATA,TEXT
+FROM ORA_DOCS
+WHERE ID = 'bae5dfe1-932b-4511-8735-2ee2848f8a31';
+```
+
+```txt
+{"index":"24"}
+
+JAVA SE UNIVERSAL SUBSCRIPTION
+The enterprise-wide, term-based Java SE Universal Subscription model includes cloud
+deployment, server, and desktop licensing and support. Simple per-Employee pricing starting at $15/employee/month and lower depending on
+volume. Eliminates issues of precisely accounting for JDK instances in bare-metal, virtualized, and
+containerized servers and desktops, on-premises, and in clouds. Triage support for your entire Java portfolio, including third-party libraries and runtimes.
+```
+

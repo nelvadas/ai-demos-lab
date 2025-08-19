@@ -71,9 +71,13 @@ public class AiServiceFactory {
     }
 
 
-
-
-
+    /**
+     * Get a Generation Service powered by Ollama
+     * @param baseUrl
+     * @param modelName
+     * @return
+     * @throws IOException
+     */
     @Singleton
     @Requires(property = "ai.provider", value = "ollama")
     public GeneratorService defaultOllamaService(
@@ -83,7 +87,11 @@ public class AiServiceFactory {
     }
 
 
-
+    /**
+     * Get a Generation Service powered by OCI Generative Cohere Models
+     * @return
+     * @throws IOException
+     */
     @Singleton
     @Requires(property = "ai.provider", value = "oci")
     public GeneratorService defaultOciCohereService() throws IOException {
