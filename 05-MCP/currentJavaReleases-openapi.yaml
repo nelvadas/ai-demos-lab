@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Oracle Java Current Releases API
+  version: 1.0.0
+servers:
+  - url: https://java.oraclecloud.com
+paths:
+  /currentJavaReleases/:
+    get:
+      summary: Get current Java release metadata
+      operationId: getCurrentJavaReleases
+      responses:
+        '200':
+          description: A list of current Java releases
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        artifactContentTypes:
+                          type: array
+                          items:
+                            type: string
+                            enum: [JDK, JRE, SERVER_JRE]
+                        daysUnderSecurityBaseline:
+                          type: integer
+                          example: 0
+                        isScriptDownloadAvailable:
+                          type: boolean
+                          example: true
+                        jdkDetails:
+                          type: object
+                          properties:
+                            docUrl:
+                              type: string
+                              format: uri
+                              example: "https://docs.oracle.com/javase/24"
+                            endOfSupportLifeDate:
+                              type: string
+                              format: date-time
+                              example: "2025-09-18T23:59:59.000Z"
+                            jdkVersion:
+                              type: string
+                              example: "24"
+                            isSupportedVersion:
+                              type: boolean
+                              example: true
+                            latestReleaseVersion:
+                              type: string
+                              example: "24.0.2"
+                            isLts:
+                              type: boolean
+                              example: false
+                        licenseDetails:
+                          type: object
+                          properties:
+                            displayName:
+                              type: string
+                              example: "Oracle No-Fee Terms and Conditions"
+                            licenseType:
+                              type: string
+                              example: "NFTC"
+                            licenseUrl:
+                              type: string
+                              format: uri
+                              example: "https://java.com/freeuselicense"
+                        releaseDate:
+                          type: string
+                          format: date-time
+                          example: "2025-07-15T00:00:00.000Z"
+                        releaseNotesUrl:
+                          type: string
+                          format: uri
+                          example: "https://www.oracle.com/java/technologies/javase/24-0-2-relnotes.html"
+                        releaseType:
+                          type: string
+                          enum: [CPU, PSU, GA, EA]
+                          example: "CPU"
+                        releaseVersion:
+                          type: string
+                          example: "24.0.2"
+                        releaseFullVersion:
+                          type: string
+                          example: "jdk-24.0.2-54+12"
+                        securityStatus:
+                          type: string
+                          enum: [UP_TO_DATE, OUTDATED]
+                          example: "UP_TO_DATE"
+
