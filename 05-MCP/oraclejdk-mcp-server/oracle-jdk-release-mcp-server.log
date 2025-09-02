@@ -1,0 +1,34 @@
+2025-08-28T14:23:17.571+02:00  INFO 11246 --- [oracle-jdk-release-app] [main] i.n.mcp.OraclejdkMcpServerApplication    : Starting OraclejdkMcpServerApplication using Java 21.0.7 with PID 11246 (/Users/enono/Workspace/AI/OCI-Vector-Search/ai-demos-lab/05-MCP/oraclejdk-mcp-server/target/classes started by enono in /Users/enono/Workspace/AI/OCI-Vector-Search/ai-demos-lab/05-MCP/oraclejdk-mcp-server)
+2025-08-28T14:23:17.572+02:00  INFO 11246 --- [oracle-jdk-release-app] [main] i.n.mcp.OraclejdkMcpServerApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-08-28T14:23:17.751+02:00  WARN 11246 --- [oracle-jdk-release-app] [main] onfigReactiveWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start reactive web server
+2025-08-28T14:23:17.754+02:00  INFO 11246 --- [oracle-jdk-release-app] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-28T14:23:17.761+02:00 ERROR 11246 --- [oracle-jdk-release-app] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web application could not be started as there was no org.springframework.boot.web.reactive.server.ReactiveWebServerFactory bean defined in the context.
+
+Action:
+
+Check your application's dependencies for a supported reactive web server.
+Check the configured web application type.
+
+2025-08-28T14:40:06.937+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : Starting OraclejdkMcpServerApplicationTests using Java 21.0.7 with PID 12368 (started by enono in /Users/enono/Workspace/AI/OCI-Vector-Search/ai-demos-lab/05-MCP/oraclejdk-mcp-server)
+2025-08-28T14:40:06.938+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2025-08-28T14:40:07.481+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Enable tools capabilities, notification: true
+2025-08-28T14:40:07.481+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Registered tools: 1
+2025-08-28T14:40:07.481+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Enable resources capabilities, notification: true
+2025-08-28T14:40:07.482+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Enable prompts capabilities, notification: true
+2025-08-28T14:40:07.482+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Enable completions capabilities
+2025-08-28T14:40:07.508+02:00  INFO 12368 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : Started OraclejdkMcpServerApplicationTests in 0.673 seconds (process running for 0.994)
+2025-08-28T14:46:08.252+02:00  INFO 12864 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : Starting OraclejdkMcpServerApplicationTests using Java 21.0.7 with PID 12864 (started by enono in /Users/enono/Workspace/AI/OCI-Vector-Search/ai-demos-lab/05-MCP/oraclejdk-mcp-server)
+2025-08-28T14:46:08.253+02:00  INFO 12864 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2025-08-28T14:46:08.723+02:00  INFO 12864 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Enable tools capabilities, notification: true
+2025-08-28T14:46:08.723+02:00  INFO 12864 --- [oracle-jdk-release-app] [main] o.s.a.m.s.a.McpServerAutoConfiguration   : Registered tools: 1
+2025-08-28T14:46:08.744+02:00  INFO 12864 --- [oracle-jdk-release-app] [main] i.n.m.OraclejdkMcpServerApplicationTests : Started OraclejdkMcpServerApplicationTests in 0.594 seconds (process running for 0.928)
